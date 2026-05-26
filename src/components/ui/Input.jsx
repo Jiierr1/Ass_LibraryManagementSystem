@@ -1,59 +1,58 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Input = (
-  {
-    width = "500px",
-    icon = 'bi bi-lock',
-    label = '',
-    type = 'password',
-    placeholder = 'Enter ...',
-    error = '',
-    value,
-    onChange,
-    name,
-  }
-) => {
+const Input = ({
+  width = "300px",
+  icon = "",
+  label = "",
+  type = "text",
+  placeholder = "Enter ...",
+  error = "",
+  value,
+  onChange,
+  name,
+  id,
+}) => {
   const [show, setShow] = useState(false);
   const isPassword = type === "password";
+
+  const inputType = isPassword
+    ? show
+      ? "text"
+      : "password"
+    : type;
+
   return (
-    <StyledWrapper>
-      {label && <label className="label fs-5">{label}</label>}
-      <div className="group" style={{ maxWidth: width }}>
-        <i className={`${icon} icon`}></i>
+    <StyledWrapper style={{ maxWidth: width }}>
+      {label && <label htmlFor={id}>{label}</label>}
+
+      <div className="group">
+        {icon && <i className={`${icon} icon`} />}
 
         <input
-          className="input"
-          type={isPassword ? (show ? "text" : "password") : type}
+          id={id}
+          className={`input ${error ? "input-error" : ""}`}
+          type={inputType}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
           name={name}
         />
 
-        {
-          isPassword && (
-            <i
+        {isPassword && (
+          <i
             className={`toggle bi ${show ? "bi-eye" : "bi-eye-slash"}`}
-            onClick={() => setShow(!show)}
-            ></i>
-          )
-        }
+            onClick={() => setShow((s) => !s)}
+          />
+        )}
       </div>
+
       {error && <div className="error">{error}</div>}
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  .label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #212529;
-  }
-
   .group {
     position: relative;
     width: 100%;
@@ -63,7 +62,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     height: 46px;
     padding-left: 42px;
-    padding-right: 42px; /* IMPORTANT for eye icon */
+    padding-right: 42px;
     border-radius: 10px;
     border: 1px solid #dee2e6;
     background: #f8f9fa;
@@ -84,7 +83,6 @@ const StyledWrapper = styled.div`
     transform: translateY(-50%);
     color: #6c757d;
     pointer-events: none;
-    font-size: 1rem;
   }
 
   .toggle {
@@ -94,12 +92,6 @@ const StyledWrapper = styled.div`
     transform: translateY(-50%);
     cursor: pointer;
     color: #6c757d;
-    font-size: 1.1rem;
-    transition: 0.2s;
-  }
-
-  .toggle:hover {
-    color: #0d6efd;
   }
 
   .error {
