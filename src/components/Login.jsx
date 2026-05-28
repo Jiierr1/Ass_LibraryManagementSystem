@@ -56,7 +56,7 @@ function Login({ login, loading, error }) {
         {/* Right Side: Form Inputs */}
         <div className="col-md-6 bg-white d-flex justify-content-center align-items-center p-5">
           <div className="w-100" style={{ maxWidth: "640px" }}>
-            <h2 className="fw-bold text-dark mb-1 fs-2">Welcome Back</h2>
+            <h2 className="fw-bold text-dark mb-1 fs-2">LOG IN</h2>
 
             <p className="text-muted small mb-4 fs-5">
               Please enter your credentials to access your portal.
@@ -163,7 +163,7 @@ function Login({ login, loading, error }) {
                   "Logging in..."
                 ) : (
                   <>
-                    Login to Dashboard
+                    Login 
                     <i className="bi bi-arrow-right ms-2"></i>
                   </>
                 )}
