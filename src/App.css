@@ -1,1 +1,119 @@
+/* App.css */
+.app-container {
+  min-height: 100vh;
+  background-color: #f8f9fc;
+}
 
+.sidebar {
+  width: 260px;
+  /* background: linear-gradient(180deg, #2e5d9b 0%, #15438b 100%); */
+  background: #1b365d;
+  color: white;
+  /* transition: all 0.01s; */
+  z-index: 1000;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-brand {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+.sidebar-brand h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.sidebar-brand p {
+  margin: 0;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.nav-link-custom {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  /* transition: all 0.001s; */
+  gap: 12px;
+}
+
+.nav-link-custom:hover {
+  background: rgba(97, 67, 67, 0.1);
+  color: white;
+}
+
+.nav-link-custom.active {
+  background: #0b49a6;
+  color: white;
+  /* border-left: 1px solid #dead19; */
+}
+
+.main-content {
+  padding: 20px 30px;
+  overflow-y: auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0.5rem;
+}
+/* card stat in dashboard */
+.card-stats {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgb(223, 214, 214);
+  transition: transform 0.2s;
+  outline: 2px solid #c2c8d1;
+}
+
+.card-stats:hover {
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.7;
+}
+
+.table-responsive {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.btn-sm-rounded {
+  border-radius: 20px;
+  padding: 0.2rem 0.8rem;
+}
+
+.modal-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+.sidebar-icon {
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.nav-link-custom {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.2s;
+  gap: 0; /* remove gap, use margin-right on icon instead */
+}
+
+.nav-link-custom .sidebar-icon {
+  margin-right: 12px;
+}
