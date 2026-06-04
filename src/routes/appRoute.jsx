@@ -12,6 +12,7 @@ function AppRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/" element={<Homepage/>}/>
         <Route
           path="/"
           element={
@@ -24,5 +25,4 @@ function AppRoutes() {
     </BrowserRouter>
   );
 }
-
 export default AppRoutes;

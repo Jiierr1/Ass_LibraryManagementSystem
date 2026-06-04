@@ -1,27 +1,32 @@
 import React, { useState } from "react";
+import Input from "./ui/Input";
 function Login({ login, loading, error }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Email validation error
   const [emailError, setEmailError] = useState("");
-
+  const [passwordError, setPasswordError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Email RegExp
+  
+    let valid = true;
+  
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Validate Email
+  
     if (!emailRegex.test(email)) {
       setEmailError("Please enter a valid email address");
-      return;
+      valid = false;
+    } else {
+      setEmailError("");
     }
-
-    // Clear error
-    setEmailError("");
-
+  
+    if (!password.trim()) {
+      setPasswordError("Password is required");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+    if (!valid) return;
+  
     login(email, password);
   };
 
@@ -55,7 +60,7 @@ function Login({ login, loading, error }) {
 
         {/* Right Side: Form Inputs */}
         <div className="col-md-6 bg-white d-flex justify-content-center align-items-center p-5">
-          <div className="w-100" style={{ maxWidth: "640px" }}>
+          <div className="w-100" style={{ maxWidth: "540px" }}>
             <h2 className="fw-bold text-dark mb-1 fs-2">LOG IN</h2>
 
             <p className="text-muted small mb-4 fs-5">
@@ -68,33 +73,26 @@ function Login({ login, loading, error }) {
 
             <form onSubmit={handleSubmit}>
               {/* Email Input */}
-              <div className="mb-3">
+              <div className="mb-3" >
                 <label className="form-label small fw-semibold text-secondary fs-5">
                   Email Address
                 </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  icon="bi bi-envelope"
+                  value={email}
+                  error={emailError}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError("");
+                  }}
+                  width="100%"
+                />
 
-                <div className="input-group">
-                  <span className="input-group-text bg-white border-end-0 text-muted">
-                    <i className="bi bi-envelope"></i>
-                  </span>
-
-                  <input
-                    type="email"
-                    className="form-control form-control-lg border-start-0 ps-0"
-                    placeholder="name@example.com"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      setEmailError("");
-                    }}
-                    required
-                  />
-                </div>
-                {emailError && (
-                  <div className="text-danger small mt-1">{emailError}</div>
-                )}
               </div>
-
               {/* Password Input */}
               <div className="mb-3">
                 <div className="d-flex justify-content-between align-items-center mb-1">
@@ -110,33 +108,21 @@ function Login({ login, loading, error }) {
                     Forgot password?
                   </a>
                 </div>
-
-                <div className="input-group">
-                  <span className="input-group-text bg-white border-end-0 text-muted">
-                    <i className="bi bi-lock"></i>
-                  </span>
-
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    className="form-control form-control-lg border-start-0 ps-0"
-                    placeholder="••••••••"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-
-                  <span
-                    className="input-group-text bg-white border-start-0 text-muted"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    <i
-                      className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}
-                    ></i>
-                  </span>
-                </div>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  icon="bi bi-lock"
+                  value={password}
+                  error={passwordError}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordError(""); 
+                  }}
+                  width="100%"
+                />
               </div>
-
               {/* Remember Me */}
               <div className="mb-4 form-check">
                 <input
@@ -156,14 +142,19 @@ function Login({ login, loading, error }) {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="btn btn-info w-100 text-white fw-semibold fs-5 d-flex align-items-center justify-content-center py-2 rounded-4 border-0"
+                className="btn w-100 text-white fw-semibold d-flex align-items-center justify-content-center py-2 rounded-3 border-0"
+                style={{ 
+                  backgroundColor: "#00c3e3", 
+                  fontSize: "1rem",
+                  height: "46px"
+                }}
                 disabled={loading}
               >
                 {loading ? (
                   "Logging in..."
                 ) : (
                   <>
-                    Login 
+                    Login
                     <i className="bi bi-arrow-right ms-2"></i>
                   </>
                 )}
@@ -195,7 +186,7 @@ function Login({ login, loading, error }) {
                   style={{
                     fontSize: "15px",
                     fontWeight: "500",
-                    height: "40px",
+                    height: "44px",
                   }}
                 >
                   <svg width="18" height="18" viewBox="0 0 48 48">
@@ -229,7 +220,7 @@ function Login({ login, loading, error }) {
                   style={{
                     fontSize: "15px",
                     fontWeight: "500",
-                    height: "40px",
+                    height: "44px",
                     color: "#212529",
                   }}
                 >
